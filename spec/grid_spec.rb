@@ -3,7 +3,9 @@ require 'cell'
 
 describe Grid do
   
-  let(:grid) { Grid.new }
+  let(:puzzle) { '015003002000100906270068430490002017501040380003905000900081040860070025037204600' }
+  let(:grid) { Grid.new(puzzle) }
+ 
 
   context "initializing grid" do 
 
@@ -23,7 +25,9 @@ describe Grid do
     end
 
     it "cell 1 will have a value of 2 as it is created" do
-      cell = grid.cell_array[1]
+      puzzle2 = ('2' * 81).to_s
+      grid = Grid.new(puzzle2)
+      cell = grid.cell_array[0]
       expect(cell.value).to eq 2
     end
 
@@ -45,14 +49,34 @@ describe Grid do
     end
 
     it "the puzzle is solved" do
-      grid.populate_values_from(3)
+      puzzle2 = ('3' * 81)
+      grid = Grid.new puzzle2
       expect(grid.solved?).to be_true
     end
 
     it "alls cells will be populated with value 3" do
-      grid.populate_values_from(3)
+      puzzle2 = ('3' * 81)
+      grid = Grid.new puzzle2
       cell = grid.cell_array[4]
       expect(cell.value).to eq 3
     end
+
+    it "populates value 1 from a given puzzle cell 2" do
+      cell = grid.cell_array[1]
+      expect(cell.value).to eq 1
+    end
+
+    it "populates value 9 from a given puzzle cell 16" do
+      cell = grid.cell_array[15]
+      expect(cell.value).to eq 9
+    end
+  end
+
+  context "solving the puzzle" do
+    it "knows which numbers are in a cell's row" do
+      expect
+    end
+
+  
   end
 end

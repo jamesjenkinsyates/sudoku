@@ -2,12 +2,13 @@ class Grid
 
   attr_accessor :cell_array
 
-  def initialize
-    value = 2
+  def initialize puzzle
     @cell_array = []
+    puzzle_array = puzzle.scan(/./)
     (1..81).each do |position| 
-      @cell_array << Cell.new(position,value)
+      @cell_array << Cell.new(position,value = puzzle_array.delete_at(0).to_i)
     end
+    # populate_values_from puzzle
   end
 
   def create_empty_board
@@ -16,11 +17,12 @@ class Grid
     end
   end
 
-  def populate_values_from puzzle
-    @cell_array.each do |cell| 
-      cell.value = value
-    end
-  end
+  # def populate_values_from puzzle
+  #   puzzle_array = puzzle.scan(/./)
+  #   @cell_array.each do |cell| 
+  #     cell.value = puzzle_array.delete_at(0).to_i
+  #   end
+  # end
 
   def solved?
     @cell_array.each{ |cell| return false if !cell.solved?}
