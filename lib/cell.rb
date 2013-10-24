@@ -34,9 +34,4 @@ class Cell
     return false if value == 0
     true
   end
-
-
-
-
-
 end

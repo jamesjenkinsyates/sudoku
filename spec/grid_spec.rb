@@ -72,11 +72,40 @@ describe Grid do
     end
   end
 
-  context "solving the puzzle" do
-    it "knows which numbers are in a cell's row" do
-      expect
+  context "solving the cell" do 
+    it "returns numbers which are in selected cell's column" do
+      cell = grid.cell_array[9]
+      expect(grid.values_in_column_for(cell)).to eq [2,4,5,9,8] 
     end
 
-  
+    it "returns numbers which are in selected cell's row" do
+      cell = grid.cell_array[9]
+      expect(grid.values_in_row_for(cell)).to eq [1,9,6] 
+    end
+
+    it "returns numbers which are in selected cell's square" do
+      cell = grid.cell_array[9]
+      expect(grid.values_in_square_for(cell)).to eq [1,5,2,7] 
+    end
+
+    it "determines the candidate values" do
+      cell = grid.cell_array[1]
+      expect(grid.candidate_values(cell)).to eq [4, 8]
+    end
+
+    it "returns the correct value if correct" do
+      cell = grid.cell_array[9]
+      expect(grid.candidate_values(cell)).to eq 3
+    end
+
+    it "puzzle can be solved" do
+      expect(grid.solve_puzzle).to eq 2 
+    end
+
+
+
+
+
+
   end
 end

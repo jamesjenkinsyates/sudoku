@@ -1,8 +1,10 @@
 require 'cell'
+require 'grid'
 
 describe Cell do 
 
-  # let(:cell) { Cell.new }
+  let(:grid) { Grid.new puzzle }
+  let(:puzzle) { '015003002000100906270068430490002017501040380003905000900081040860070025037204600' }
 
   context "Initializing the cell" do 
     it "will exist with an initial position" do
@@ -77,9 +79,5 @@ describe Cell do
       cell = Cell.new 1, 0
       expect(cell.solved?).to be_false 
     end
-
-
-
-
   end
 end
